@@ -18,9 +18,9 @@ server.get("/search",async(request,response)=>{
 
 
 
-//  let text2 = '"' + request.query.term.split(" ").join('" "') + '"' || ""
+ let text2 = '"' + request.query.term.split(" ").join('" "') + '"' || ""
 
-    var term = request.query.term
+    var term = text2
     var replaceList = {
         1: "one ",
         2: "two ",
@@ -40,16 +40,14 @@ server.get("/search",async(request,response)=>{
     });
 
 
-
-let text2 = '"' +listChange.split(" ").join('" "') + '"' || ""
-//   console.log(text2)
+console.log(listChange)
 
     try {
       let result = await collection.aggregate([
           {
               "$search":{
                   "autocomplete":{
-                      "query":`${text2}`,
+                      "query":`${listChange}`,
                       "path":"fieldSearch",
                       "fuzzy":{
                           "maxEdits":1
@@ -64,11 +62,9 @@ let text2 = '"' +listChange.split(" ").join('" "') + '"' || ""
               score: { $meta: "searchScore" }
             }
           },
-          
           { $limit : 10 }
       ])
       .toArray()
-      
       response.send(result)
 
       

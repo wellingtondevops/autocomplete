@@ -23,7 +23,7 @@
                         .then(results => results.map(result=>{
                             return {label: result.fieldColumns, value: result.fieldColumns, id: result._id}
                         }))
-                        response(data)
+                        response(data.replace(","," "))
                     },
                     select: function(event, ui){
                        fetch(`http://localhost:3006/get/${ui.item.id}`)

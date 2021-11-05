@@ -41,7 +41,7 @@ server.get("/search",async(request,response)=>{
 
 
 
-let text2 = '"' +listChange.split(" ").join('" "') + '"' || ""
+//   let text2 = '"' +listChange.split(" ").join('" "') + '"' || ""
 //   console.log(text2)
 
     try {
@@ -49,7 +49,7 @@ let text2 = '"' +listChange.split(" ").join('" "') + '"' || ""
           {
               "$search":{
                   "autocomplete":{
-                      "query":`${text2}`,
+                      "query":`${listChange}`,
                       "path":"fieldSearch",
                       "fuzzy":{
                           "maxEdits":1

@@ -21,7 +21,7 @@
                         let data = await fetch(`http://localhost:3006/search?term=${request.term}` )
                         .then(results => results.json())
                         .then(results => results.map(result=>{
-                            return {label: result.fieldColumns, value: result.fieldColumns, id: result._id}
+                            return {label: result.fieldSearch, value: result.fieldSearch, id: result._id}
                         }))
                         response(data)
                     },

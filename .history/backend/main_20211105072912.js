@@ -40,9 +40,8 @@ server.get("/search",async(request,response)=>{
     });
 
 
-
-let text2 = '"' +listChange.split(" ").join('" "') + '"' || ""
-//   console.log(text2)
+console.log(listChange)
+  let text2 = '"' +listChange.split(" ").join('" "') + '"' || ""
 
     try {
       let result = await collection.aggregate([
@@ -68,8 +67,7 @@ let text2 = '"' +listChange.split(" ").join('" "') + '"' || ""
           { $limit : 10 }
       ])
       .toArray()
-      
-      response.send(result)
+      response.send(result.replace(","," - "))
 
       
         
