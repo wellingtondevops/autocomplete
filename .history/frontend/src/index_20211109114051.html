@@ -26,7 +26,7 @@
                         response(data)
                     },
                     select: function(event, ui){
-                       fetch(`http://localhost:3000/worksheets/${ui.item.id}`)
+                       fetch(`http://localhost:3000/worksheets/get/${ui.item.id}`)
                        .then(result => result.json())
                        .then(result =>{
                            $("#fieldColumns").empty()

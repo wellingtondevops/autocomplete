@@ -2,8 +2,13 @@ const express = require("express");
 
 const app = express();
 
-
-
+app.use(Cors())
+app.use((req, res, next) => {
+    req.header("Access-Control-Allow-Origin", "*");
+    req.header("Access-Control-Allow-Methods", "HEAD,OPTIONS,GET,POST,PUT,FETCH,DELETE");
+    req.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, contentType, Content-Type, Accept, Authorization,strict-origin-when-cross-origin");
+    next();
+});
 
 app.get("/", function(req, res){
     res.sendFile(__dirname + "/src/index.html");

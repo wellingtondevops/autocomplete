@@ -1,10 +1,11 @@
 const express = require("express");
+const Cors = require("cors")
+const BodyParser = require("body-parser")
 
 const app = express();
-
-
-
-
+app.use(BodyParser.json())
+app.use(BodyParser.urlencoded({extended:true}))
+app.use(Cors())
 app.get("/", function(req, res){
     res.sendFile(__dirname + "/src/index.html");
 });
